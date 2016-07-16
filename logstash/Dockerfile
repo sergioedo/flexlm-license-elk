@@ -1,4 +1,4 @@
-FROM logstash:2.1
+FROM logstash:2.3.3
 MAINTAINER sergioedo
 
 #Set Time Zone
@@ -7,7 +7,7 @@ RUN echo "Europe/Madrid" | tee /etc/timezone && dpkg-reconfigure --frontend noni
 #Install Git & Ruby
 RUN apt-get update && apt-get -y install git && apt-get -y install ruby-full
 
-#Get memorize plugin, fix gemspec and compile plugin
+#Get memorize plugin and compile plugin
 WORKDIR /opt/local/logstash
 RUN git clone https://github.com/alcanzar/logstash-filter-memorize.git logstash-filter-memorize \
 	&& cd logstash-filter-memorize && gem build logstash-filter-memorize.gemspec
